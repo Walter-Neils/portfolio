@@ -65,7 +65,9 @@ export function Experience() {
   const [detailsOpen, setDetailsOpen] = React.useState(false);
   return (
     <>
-      <Card variant='outlined'>
+      <Card variant='outlined' sx={{
+        marginBottom: '10px'
+      }}>
         <CardHeader title="Full-Stack Developer" subheader="xCraft Enterprises, Inc." />
         <Typography variant="body1" sx={{
           padding: '10px'
@@ -73,7 +75,9 @@ export function Experience() {
           Built, deployed, and maintained a full-stack application designed to control drones over the internet.
         </Typography>
       </Card>
-      <Card variant="outlined">
+      <Card variant="outlined" sx={{
+        marginBottom: '10px'
+      }}>
         <CardHeader title="Undergraduate Researcher" subheader="University of Idaho" />
         <CardContent>
           <Typography variant="body1" sx={{
@@ -179,29 +183,31 @@ function ScarecroProjectCard() {
           }} startIcon={<WebIcon />}>Demo</Button>
         </CardActions>
       </Card>
-      <Backdrop open={detailsOpen}>
+      <Backdrop open={detailsOpen} sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+      }}>
         <Card variant='outlined' sx={{
           padding: '20px',
           maxWidth: {
             xs: '100%',
             sm: '80%',
             md: '60%',
-            lg: '40%',
-            xl: '20%'
+            lg: '50%',
+            xl: '40%'
           },
           width: {
             xs: '100%',
             sm: '80%',
             md: '60%',
             lg: '40%',
-            xl: '20%'
+            xl: '30%'
           },
           height: {
             xs: '100%',
             sm: 'auto'
           },
           maxHeight: '100vh',
-          overflowY: 'auto'
+          overflowY: 'auto',
         }}>
           <CardHeader title="Scarecro" subheader="Agricultural data collection and analytics" />
           <CardContent>
@@ -272,7 +278,8 @@ function ScarecroProjectCard() {
 function CatalystProjectCard() {
   return (
     <Card variant='outlined' sx={{
-      minWidth: '50vw'
+      minWidth: '50vw',
+      marginBottom: '10px'
     }}>
       <CardHeader title="Catalyst" subheader="A C# library with extensions for pretty much everything" />
       <CardContent>
@@ -408,7 +415,9 @@ function CatalystProjectCard() {
 
 function EVProjectCard() {
   return (
-    <Card variant='outlined'>
+    <Card variant='outlined' sx={{
+      marginBottom: '10px'
+    }}>
       <CardHeader title="EV Project" subheader="Building a custom electric vehicle" />
       <CardContent>
         <Typography variant="body1">

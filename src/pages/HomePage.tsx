@@ -94,6 +94,63 @@ export function Experience() {
   );
 }
 
+function NodeWebAppBaseProjectCard() {
+  return (
+    <Card variant='outlined'>
+      <CardHeader title="Node Web App Base" subheader="A template for building Node.js web apps with microservice architecture" />
+      <CardContent>
+        <Typography variant="body1">
+          Node Web App Base is a template for building Node.js web apps with microservice architecture. It's designed to be a starting point for building Node.js web apps with a modern, scalable architecture.
+        </Typography>
+        <List>
+          {
+            [
+              {
+                primary: 'React',
+                secondary: 'For a responsive, modern frontend'
+              },
+              {
+                primary: 'Node.js',
+                secondary: 'For a fast, scalable backend with maximum code reuse'
+              },
+              {
+                primary: 'TypeScript',
+                secondary: 'For a type-safe, modern codebase'
+              },
+              {
+                primary: 'MongoDB',
+                secondary: 'Scalable, flexible, and capable of supporting new data shapes as they are added'
+              },
+              {
+                primary: 'Docker',
+                secondary: 'For easy, consistent deployment'
+              },
+              {
+                primary: 'AWS S3',
+                secondary: 'For storing large amounts of static data'
+              },
+              {
+                primary: 'NGINX',
+                secondary: 'For serving static files and load balancing'
+              }
+            ].map((item, i) => (
+              <ListItem key={i}>
+                <ListItemIcon>
+                  <WebIcon />
+                </ListItemIcon>
+                <ListItemText primary={item.primary} secondary={item.secondary} />
+              </ListItem>
+            ))
+          }
+        </List>
+      </CardContent>
+      <CardActions>
+        <Button variant='contained' startIcon={<LaunchIcon/>} onClick={() => window.open("https://github.com/Walter-Neils/node-webapp-base")}>GitHub</Button>
+      </CardActions>
+    </Card>
+  )
+}
+
 function ScarecroProjectCard() {
   const [detailsOpen, setDetailsOpen] = React.useState(false);
 
@@ -405,6 +462,7 @@ function PersonalExperienceCard() {
         }}>
           <CatalystProjectCard />
           <EVProjectCard />
+          <NodeWebAppBaseProjectCard />
         </Box>
       </CardContent>
     </Card>

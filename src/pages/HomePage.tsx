@@ -1,4 +1,4 @@
-import { Backdrop, Box, Button, Card, CardActions, CardContent, CardHeader, CardProps, Collapse, Fab, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Backdrop, Box, Button, Card, CardActions, CardContent, CardHeader, CardProps, CircularProgress, Collapse, Fab, List, ListItem, ListItemIcon, ListItemText, TextField, Typography } from "@mui/material";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Masonry } from "@mui/lab";
 import React from "react";
@@ -13,7 +13,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import ShieldIcon from '@mui/icons-material/Shield';
 // Import toast
 import { toast } from 'react-toastify';
-
+import SendIcon from '@mui/icons-material/Send';
 function HorizontalDivider() {
   return (
     <Box sx={{
@@ -265,6 +265,7 @@ function ScarecroProjectCard() {
               </TransitionGroup>
             </List>
             <HorizontalDivider />
+            <Typography variant="h6">Contact Me For More Information</Typography>
           </CardContent>
           <Fab onClick={() => setDetailsOpen(false)} sx={{
             position: 'absolute',
@@ -393,18 +394,6 @@ function CatalystProjectCard() {
                 }
               ].map((item, i) => {
                 if (!maximumFeaturesOpen && i > 4) {
-                  if(i === 5) {
-                    return (
-                      <Collapse key={`${i}-placeholder`} in={true}>
-                        <ListItem>
-                          <ListItemIcon>
-                            <WebIcon />
-                          </ListItemIcon>
-                          <ListItemText primary="And More" secondary="Show full details to see the entire feature set" />
-                        </ListItem>
-                      </Collapse>
-                    )
-                  }
                   return null;
                 }
                 return (<Collapse key={i} in={true}>
@@ -419,23 +408,19 @@ function CatalystProjectCard() {
               })
             }
           </TransitionGroup>
+          <Button variant='contained' startIcon={<LaunchIcon />} onClick={() => setMaximumFeaturesOpen(x => !x)}>Show{
+            maximumFeaturesOpen ? ' Less' : ' More'
+          }</Button>
         </List>
       </CardContent>
       <CardActions>
-        <Button variant='contained' startIcon={<LaunchIcon />} onClick={
-          () => {
-            setMaximumFeaturesOpen(x => !x);
-          }
-        }>Show{
-            maximumFeaturesOpen ? ' Less' : ' More'
-          }</Button>
         <Button variant='contained' startIcon={<LaunchIcon />} onClick={
           () => {
             // Show promise toast for 5 seconds, then fail 
             toast.promise(new Promise((resolve, reject) => {
               setTimeout(() => {
                 reject();
-              }, 5000);
+              }, 1500);
             }), {
               pending: 'Checking availability...',
               success: 'Available!',
@@ -513,6 +498,86 @@ function PersonalExperienceCard() {
   )
 }
 
+function GetInTouch() {
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [sendState, setSendState] = React.useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  const send = async () => {
+    setSendState('sending');
+    await new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        setSendState('success');
+        resolve();
+      }, 1500);
+    });
+    await new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        setSendState('idle');
+        setDialogOpen(false);
+        resolve();
+      }, 1500);
+    });
+  };
+
+  return (
+    <>
+      <Button startIcon={<SendIcon />} onClick={() => setDialogOpen(true)}>Get In Touch</Button>
+      <Backdrop open={dialogOpen} sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+      }}>
+        <Card variant='outlined' sx={{
+          padding: '20px',
+          maxWidth: {
+            xs: '100%',
+            sm: '80%',
+            md: '60%',
+            lg: '50%',
+            xl: '40%'
+          },
+          width: {
+            xs: '100%',
+            sm: '80%',
+            md: '60%',
+            lg: '40%',
+            xl: '30%'
+          },
+          height: {
+            xs: '100%',
+            sm: 'auto'
+          },
+          maxHeight: '100vh',
+          overflowY: 'auto',
+        }}>
+          <CardHeader title="Get In Touch" />
+          <CardContent>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px'
+            }}>
+              <TextField label="Name" disabled={sendState === 'sending'}/>
+              <TextField label="Email" disabled={sendState === 'sending'}/>
+              <TextField label="Message" multiline minRows={5} disabled={sendState === 'sending'}/>
+              <Button variant={
+                sendState !== 'sending' ? 'contained' : 'outlined'
+              } startIcon={
+                sendState !== 'sending' ? <SendIcon /> : <CircularProgress size={12}/>
+              } onClick={send}>Send</Button>
+            </Box>
+          </CardContent>
+          <Fab onClick={() => setDialogOpen(false)} sx={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px'
+          }}>
+            X
+          </Fab>
+        </Card>
+      </Backdrop>
+    </>
+  )
+}
+
 export default function HomePage() {
   return (
     <>
@@ -530,6 +595,7 @@ export default function HomePage() {
         <ArrowDownwardIcon sx={{
           marginTop: '10%'
         }} />
+
       </Box>
       <Box sx={{
         justifyContent: 'center',
@@ -549,9 +615,13 @@ export default function HomePage() {
             xl: '20%'
           }
         }}>
-          <Typography variant="body1">
+          <Typography variant="body1" sx={{
+            marginBottom: '20px'
+          }}>
             I'm a full-stack developer with a passion for building things. I'm currently attending North Idaho College, and I plan to transfer to the University of Idaho to finish my bachelor's (and maybe master's) degree in computer science.
           </Typography>
+        <GetInTouch />
+
         </Box>
       </Box>
       <Box sx={{

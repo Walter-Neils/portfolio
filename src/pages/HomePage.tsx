@@ -65,35 +65,64 @@ export function Experience() {
   const [detailsOpen, setDetailsOpen] = React.useState(false);
   return (
     <>
-      <Card variant='outlined' sx={{
-        marginBottom: '10px'
+      <Box sx={{
+        display: 'flex',
+        flexDirection: {
+          xs: 'column',
+          sm: 'column',
+          md: 'row',
+          lg: 'row',
+          xl: 'row'
+        },
+        flexWrap: 'wrap',
+        gap: '10px',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
-        <CardHeader title="Full-Stack Developer" subheader="xCraft Enterprises, Inc." />
-        <Typography variant="body1" sx={{
-          padding: '10px'
+        <Card variant='outlined' sx={{
+          marginBottom: '10px'
         }}>
-          Built, deployed, and maintained a full-stack application designed to control drones over the internet.
-        </Typography>
-      </Card>
-      <Card variant="outlined" sx={{
-        marginBottom: '10px'
-      }}>
-        <CardHeader title="Undergraduate Researcher" subheader="University of Idaho" />
-        <CardContent>
+          <CardHeader title="Full-Stack Developer" subheader="xCraft Enterprises, Inc." />
           <Typography variant="body1" sx={{
             padding: '10px'
           }}>
-            Designed, built, and deployed an agricultural data collection and analytics website.
+            Built, deployed, and maintained a full-stack application designed to control drones over the internet.
           </Typography>
-          <Collapse in={detailsOpen}>
-            <ScarecroProjectCard />
-          </Collapse>
-        </CardContent>
-        <CardActions>
-          <Button onClick={() => setDetailsOpen(!detailsOpen)} startIcon={<LaunchIcon />}>Show Projects</Button>
-        </CardActions>
-      </Card>
-      <PersonalExperienceCard />
+        </Card>
+        <Card variant="outlined" sx={{
+          marginBottom: '10px',
+          maxWidth: {
+            xs: '100%',
+            sm: '80%',
+            md: '60%',
+            lg: '40%',
+            xl: '30%'
+          }
+        }}>
+          <CardHeader title="Undergraduate Researcher" subheader="University of Idaho" />
+          <CardContent>
+            <Typography variant="body1" sx={{
+              padding: '10px'
+            }}>
+              Designed, built, and deployed an agricultural data collection and analytics website.
+            </Typography>
+            <Collapse in={detailsOpen}>
+              <ScarecroProjectCard />
+            </Collapse>
+          </CardContent>
+          <CardActions>
+            <Button onClick={() => setDetailsOpen(!detailsOpen)} startIcon={<LaunchIcon />}>Show Projects</Button>
+          </CardActions>
+        </Card>
+        <div style={{
+          flexBasis: '100%',
+          height: '0'
+        }} />
+        <CatalystProjectCard />
+        <EVProjectCard />
+        <NodeWebAppBaseProjectCard />
+
+      </Box>
     </>
   );
 }
@@ -555,13 +584,13 @@ function GetInTouch() {
               flexDirection: 'column',
               gap: '10px'
             }}>
-              <TextField label="Name" disabled={sendState === 'sending'}/>
-              <TextField label="Email" disabled={sendState === 'sending'}/>
-              <TextField label="Message" multiline minRows={5} disabled={sendState === 'sending'}/>
+              <TextField label="Name" disabled={sendState === 'sending'} />
+              <TextField label="Email" disabled={sendState === 'sending'} />
+              <TextField label="Message" multiline minRows={5} disabled={sendState === 'sending'} />
               <Button variant={
                 sendState !== 'sending' ? 'contained' : 'outlined'
               } startIcon={
-                sendState !== 'sending' ? <SendIcon /> : <CircularProgress size={12}/>
+                sendState !== 'sending' ? <SendIcon /> : <CircularProgress size={12} />
               } onClick={send}>Send</Button>
             </Box>
           </CardContent>
@@ -620,7 +649,7 @@ export default function HomePage() {
           }}>
             I'm a full-stack developer with a passion for building things. I'm currently attending North Idaho College, and I plan to transfer to the University of Idaho to finish my bachelor's (and maybe master's) degree in computer science.
           </Typography>
-        <GetInTouch />
+          <GetInTouch />
 
         </Box>
       </Box>

@@ -149,7 +149,7 @@ function NodeWebAppBaseProjectCard() {
         </List>
       </CardContent>
       <CardActions>
-        <Button variant='contained' startIcon={<LaunchIcon/>} onClick={() => window.open("https://github.com/Walter-Neils/node-webapp-base")}>GitHub</Button>
+        <Button variant='contained' startIcon={<LaunchIcon />} onClick={() => window.open("https://github.com/Walter-Neils/node-webapp-base")}>GitHub</Button>
       </CardActions>
     </Card>
   )
@@ -213,52 +213,56 @@ function ScarecroProjectCard() {
           <CardContent>
             <Typography variant="h6">Technologies</Typography>
             <List>
-              {
-                [
-                  {
-                    icon: WebIcon,
-                    primary: 'React',
-                    secondary: 'For a responsive, modern frontend'
-                  },
-                  {
-                    icon: SpeedIcon,
-                    primary: 'Node.js',
-                    secondary: 'For a fast, scalable backend with maximum code reuse'
-                  },
-                  {
-                    icon: ShieldIcon,
-                    primary: 'TypeScript',
-                    secondary: 'For a type-safe, modern codebase'
-                  },
-                  {
-                    icon: DatasetIcon,
-                    primary: 'MongoDB',
-                    secondary: 'Scalable, flexible, and capable of supporting new data shapes as they are added'
-                  },
-                  {
-                    icon: InventoryIcon,
-                    primary: 'Docker',
-                    secondary: 'For easy, consistent deployment'
-                  },
-                  {
-                    icon: ArchiveIcon,
-                    primary: 'AWS S3',
-                    secondary: 'For storing large amounts of static geospatial data'
-                  },
-                  {
-                    icon: OpenInBrowserIcon,
-                    primary: 'NGINX',
-                    secondary: 'For serving static files and load balancing'
-                  }
-                ].map((item, i) => (
-                  <ListItem key={i}>
-                    <ListItemIcon>
-                      <item.icon />
-                    </ListItemIcon>
-                    <ListItemText primary={item.primary} secondary={item.secondary} />
-                  </ListItem>
-                ))
-              }
+              <TransitionGroup>
+                {
+                  [
+                    {
+                      icon: WebIcon,
+                      primary: 'React',
+                      secondary: 'For a responsive, modern frontend'
+                    },
+                    {
+                      icon: SpeedIcon,
+                      primary: 'Node.js',
+                      secondary: 'For a fast, scalable backend with maximum code reuse'
+                    },
+                    {
+                      icon: ShieldIcon,
+                      primary: 'TypeScript',
+                      secondary: 'For a type-safe, modern codebase'
+                    },
+                    {
+                      icon: DatasetIcon,
+                      primary: 'MongoDB',
+                      secondary: 'Scalable, flexible, and capable of supporting new data shapes as they are added'
+                    },
+                    {
+                      icon: InventoryIcon,
+                      primary: 'Docker',
+                      secondary: 'For easy, consistent deployment'
+                    },
+                    {
+                      icon: ArchiveIcon,
+                      primary: 'AWS S3',
+                      secondary: 'For storing large amounts of static geospatial data'
+                    },
+                    {
+                      icon: OpenInBrowserIcon,
+                      primary: 'NGINX',
+                      secondary: 'For serving static files and load balancing'
+                    }
+                  ].map((item, i) => (
+                    <Collapse key={i} in={detailsOpen}>
+                      <ListItem>
+                        <ListItemIcon>
+                          <item.icon />
+                        </ListItemIcon>
+                        <ListItemText primary={item.primary} secondary={item.secondary} />
+                      </ListItem>
+                    </Collapse>
+                  ))
+                }
+              </TransitionGroup>
             </List>
             <HorizontalDivider />
           </CardContent>
@@ -276,6 +280,7 @@ function ScarecroProjectCard() {
 }
 
 function CatalystProjectCard() {
+  const [maximumFeaturesOpen, setMaximumFeaturesOpen] = React.useState(false);
   return (
     <Card variant='outlined' sx={{
       minWidth: '50vw',
@@ -286,114 +291,144 @@ function CatalystProjectCard() {
         <Typography variant="body1">
           Catalyst is a C# library with extensions for pretty much everything. It's designed to be a one-stop-shop for all of your C# needs, and it's designed to be as easy to use as possible.
         </Typography>
-        <List>
-          {
-            [
-              {
-                primary: 'Code Generation',
-                secondary: 'Language-agnostic code generation library'
-              },
-              {
-                primary: 'Runtime Adapters',
-                secondary: 'Dynamically loaded adapters for different strategies with the same interface'
-              },
-              {
-                primary: 'Persistent Storage',
-                secondary: 'A simple, database-agnostic ORM compatible with Catalyst Adapters'
-              },
-              {
-                primary: 'Cecil Extensions',
-                secondary: 'Extensions for the Mono.Cecil library'
-              },
-              {
-                primary: 'Boilerplate Patcher',
-                secondary: 'Standalone executable for adding compile time code modifications to a project based on code attributes'
-              },
-              {
-                primary: 'Caching System',
-                secondary: 'A simple, thread-safe caching system compatible with Catalyst Adapters'
-              },
-              {
-                primary: 'DOT / GraphViz Library',
-                secondary: 'A library for generating GraphViz DOT files'
-              },
-              {
-                primary: 'Composition Library',
-                secondary: 'Runtime assembly generation for creating composite types on the fly'
-              },
-              {
-                primary: 'Instance Streams',
-                secondary: 'A library for creating streams which when read from or written to, create instances of a given type'
-              },
-              {
-                primary: 'Console UI',
-                secondary: 'A library for creating console UIs'
-              },
-              {
-                primary: 'File Extensions',
-                secondary: 'Extensions for the System.IO library, including NTFS alternate data streams & more'
-              },
-              {
-                primary: 'Hardware Information',
-                secondary: 'A library for getting information about the hardware the program is running on'
-              },
-              {
-                primary: 'LINQ Extensions',
-                secondary: 'Extensions for the System.Linq library'
-              },
-              {
-                primary: 'Mathmatical Expression Parser',
-                secondary: 'A library for parsing and evaluating mathematical expressions'
-              },
-              {
-                primary: 'MAVLink',
-                secondary: 'A library for parsing and serializing MAVLink messages'
-              },
-              {
-                primary: 'Catalyst Python Interop',
-                secondary: 'A library for using Python objects as if they were C# objects'
-              },
-              {
-                primary: 'Object State Observer',
-                secondary: 'A library for observing changes to objects'
-              },
-              {
-                primary: 'VT100',
-                secondary: 'A library for creating VT100 escape sequences'
-              },
-              {
-                primary: 'MotionJPEG',
-                secondary: 'A library for creating MotionJPEG streams'
-              },
-              {
-                primary: 'Synology API',
-                secondary: 'A library for interacting with Synology NAS devices'
-              },
-              {
-                primary: 'BITS Wrapper',
-                secondary: 'A wrapper for the Background Intelligent Transfer Service'
-              },
-              {
-                primary: 'Timing Library',
-                secondary: 'A library for timing code execution'
-              },
-              {
-                primary: 'Diagnostics',
-                secondary: 'A library for logging and debugging'
-              }
-            ].map((item, i) => (
-              <ListItem key={i}>
-                <ListItemIcon>]
-                  <WebIcon />
-                </ListItemIcon>
-                <ListItemText primary={item.primary} secondary={item.secondary} />
-              </ListItem>
-            ))
-          }
+        <List sx={{
+          justifyContent: 'center',
+          textAlign: 'center',
+          alignItems: 'center',
+        }}>
+          <TransitionGroup>
+            {
+              [
+                {
+                  primary: 'Code Generation',
+                  secondary: 'Language-agnostic code generation library'
+                },
+                {
+                  primary: 'Runtime Adapters',
+                  secondary: 'Dynamically loaded adapters for different strategies with the same interface'
+                },
+                {
+                  primary: 'Persistent Storage',
+                  secondary: 'A simple, database-agnostic ORM compatible with Catalyst Adapters'
+                },
+                {
+                  primary: 'Cecil Extensions',
+                  secondary: 'Extensions for the Mono.Cecil library'
+                },
+                {
+                  primary: 'Boilerplate Patcher',
+                  secondary: 'Standalone executable for adding compile time code modifications to a project based on code attributes'
+                },
+                {
+                  primary: 'Caching System',
+                  secondary: 'A simple, thread-safe caching system compatible with Catalyst Adapters'
+                },
+                {
+                  primary: 'DOT / GraphViz Library',
+                  secondary: 'A library for generating GraphViz DOT files'
+                },
+                {
+                  primary: 'Composition Library',
+                  secondary: 'Runtime assembly generation for creating composite types on the fly'
+                },
+                {
+                  primary: 'Instance Streams',
+                  secondary: 'A library for creating streams which when read from or written to, create instances of a given type'
+                },
+                {
+                  primary: 'Console UI',
+                  secondary: 'A library for creating console UIs'
+                },
+                {
+                  primary: 'File Extensions',
+                  secondary: 'Extensions for the System.IO library, including NTFS alternate data streams & more'
+                },
+                {
+                  primary: 'Hardware Information',
+                  secondary: 'A library for getting information about the hardware the program is running on'
+                },
+                {
+                  primary: 'LINQ Extensions',
+                  secondary: 'Extensions for the System.Linq library'
+                },
+                {
+                  primary: 'Mathmatical Expression Parser',
+                  secondary: 'A library for parsing and evaluating mathematical expressions'
+                },
+                {
+                  primary: 'MAVLink',
+                  secondary: 'A library for parsing and serializing MAVLink messages'
+                },
+                {
+                  primary: 'Catalyst Python Interop',
+                  secondary: 'A library for using Python objects as if they were C# objects'
+                },
+                {
+                  primary: 'Object State Observer',
+                  secondary: 'A library for observing changes to objects'
+                },
+                {
+                  primary: 'VT100',
+                  secondary: 'A library for creating VT100 escape sequences'
+                },
+                {
+                  primary: 'MotionJPEG',
+                  secondary: 'A library for creating MotionJPEG streams'
+                },
+                {
+                  primary: 'Synology API',
+                  secondary: 'A library for interacting with Synology NAS devices'
+                },
+                {
+                  primary: 'BITS Wrapper',
+                  secondary: 'A wrapper for the Background Intelligent Transfer Service'
+                },
+                {
+                  primary: 'Timing Library',
+                  secondary: 'A library for timing code execution'
+                },
+                {
+                  primary: 'Diagnostics',
+                  secondary: 'A library for logging and debugging'
+                }
+              ].map((item, i) => {
+                if (!maximumFeaturesOpen && i > 4) {
+                  if(i === 5) {
+                    return (
+                      <Collapse key={`${i}-placeholder`} in={true}>
+                        <ListItem>
+                          <ListItemIcon>
+                            <WebIcon />
+                          </ListItemIcon>
+                          <ListItemText primary="And More" secondary="Show full details to see the entire feature set" />
+                        </ListItem>
+                      </Collapse>
+                    )
+                  }
+                  return null;
+                }
+                return (<Collapse key={i} in={true}>
+                  <ListItem>
+                    <ListItemIcon>]
+                      <WebIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={item.primary} secondary={item.secondary} />
+                  </ListItem>
+                </Collapse>
+                );
+              })
+            }
+          </TransitionGroup>
         </List>
       </CardContent>
       <CardActions>
-        <Button variant='contained' startIcon={<LaunchIcon />}>Learn More</Button>
+        <Button variant='contained' startIcon={<LaunchIcon />} onClick={
+          () => {
+            setMaximumFeaturesOpen(x => !x);
+          }
+        }>Show{
+            maximumFeaturesOpen ? ' Less' : ' More'
+          }</Button>
         <Button variant='contained' startIcon={<LaunchIcon />} onClick={
           () => {
             // Show promise toast for 5 seconds, then fail 
@@ -421,7 +456,7 @@ function EVProjectCard() {
       <CardHeader title="EV Project" subheader="Building a custom electric vehicle" />
       <CardContent>
         <Typography variant="body1">
-          I'm working on converting a 1970 Camero into an electric vehicle. This project is still in the early stages, but I'm documenting the process. 
+          I'm working on converting a 1970 Camero into an electric vehicle. This project is still in the early stages, but I'm documenting the process.
         </Typography>
         <List>
           {
